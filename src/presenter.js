@@ -19,7 +19,22 @@ export default {
     }
   },
   created() {
-    document.addEventListener('keyup', (event) => {
+  },
+  data() {
+    return {
+      currentIndex: 0,
+      transition: null,
+    };
+  },
+  mounted() {
+    document.addEventListener('keyup', this.handleKeyup, true);
+    this.emitProgress();
+  },
+  beforeDestroy() {
+    document.removeEventListener('keyup', this.handleKeyup);
+  },
+  methods: {
+    handleKeyup(event) {
       if (event.defaultPrevented) return;
 
       switch (event.key) {
@@ -36,20 +51,7 @@ export default {
       }
 
       event.preventDefault();
-    }, true)
-  },
-  data() {
-    return {
-      currentIndex: 0,
-      transition: null,
-    };
-  },
-  mounted() {
-    this.emitProgress();
-  },
-  beforeDestroy() {
-  },
-  methods: {
+    },
     moveNext() {
       if (this.currentIndex < this.maxSlides - 1) {
         this.transition = 'slide-right';

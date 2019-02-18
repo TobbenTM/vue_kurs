@@ -25,6 +25,7 @@ export default {
 .slide {
   height: 100%;
   width: 100%;
+  max-height: 100%;
   position: absolute;
   display: flex;
   justify-content: center;

@@ -6,6 +6,8 @@
         <img src="./assets/logo.png"/>
         <h1>Vue.js</h1>
         <h4>Introduksjonskurs</h4>
+        <p>nærd.no/vue</p>
+        <p>github.com/tobbentm/vue_kurs</p>
       </app-slide>
 
       <app-slide>
@@ -53,6 +55,7 @@
 
       <app-slide>
         <h1>Komponenter</h1>
+        <!-- <code slot="code" v-html="" /> -->
       </app-slide>
 
       <app-slide>
