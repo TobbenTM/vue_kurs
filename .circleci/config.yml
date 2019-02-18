@@ -24,5 +24,8 @@ jobs:
           name: Build packages
           command: yarn build
       - run:
+          name: Add known host for production server
+          command: echo 'tobbentm.com,109.74.195.196 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7DtEfXTkLPJwHMfOTdjh2j1nkhifeOxvk7iOTRrXwRDstGuTBGoeN1eXMX9LBETxM+5AZASneNGV/N/e+k/FiMGFtVXNv6xyzn5Zwvlc6a9SDsCxBnRqeLxzvW8fD1VPXBVFaJiDBzOpHInWUhklpoMCY8M+npagiHbJKFcKhGohiEXpq12ZTi2MSGkFfnYl18WjNK/w66WdVS+fSsEFDCAngpgd8owZlEkPFnYIZTRrywb/sWXG8KHdH+IcAACrzO+7xdaVOopBJcEQCzjrV/9ADeO4qwb/7eT5cCeanvup5UhCoQSQGQJOkLLETq8Ifj3amktWPw/OoISwvkwBv' >> ~/.ssh/known_hosts
+      - run:
           name: Deploy to server
           command: rsync -va --delete ./dist root@tobbentm.com:/var/www/tobbentm/vue
