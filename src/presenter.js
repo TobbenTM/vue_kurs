@@ -3,7 +3,7 @@ export default {
     return createElement(
       'transition',
       { attrs: { name: this.transition } },
-      [this.currentSlide]
+      [createElement('keep-alive', [this.currentSlide])]
     );
   },
   computed: {
@@ -39,11 +39,9 @@ export default {
 
       switch (event.key) {
         case 'ArrowRight':
-        case ' ':
           this.moveNext();
           break;
         case 'ArrowLeft':
-        case 'Backspace':
           this.movePrev();
           break;
         default:

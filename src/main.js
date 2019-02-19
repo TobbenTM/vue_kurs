@@ -6,11 +6,14 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/mode/shell/shell.js';
 import 'codemirror/mode/vue/vue.js';
+import 'codemirror/mode/javascript/javascript.js';
 
 Vue.use(VueCodeMirror, {
   options: {
     theme: 'material',
     mode: 'text/x-vue',
+    lineWrapping: true,
+    scrollbarStyle: null,
     viewportMargin: Infinity,
   },
 });

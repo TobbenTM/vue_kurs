@@ -10,8 +10,6 @@
 
 <script>
 export default {
-  components: {
-  },
 };
 </script>
 
@@ -37,10 +35,16 @@ export default {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    max-height: 100%;
+    width: 100%;
 
     h1, h2, h3, h4, p {
       display: block;
       width: 100%;
+
+      &.subtitle {
+        margin-top: 0;
+      }
     }
 
     p {
@@ -56,15 +60,28 @@ export default {
       }
     }
 
+    .half {
+      max-width: 40%;
+    }
+
+    .component {
+      margin: 1em;
+      padding: 1em;
+      border: 1px solid #2c3e50;
+      border-radius: .3em;
+      max-width: 80%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     img {
       max-width: 80%;
       max-height: 90%;
-    }
-
-    img.half {
-      max-width: 40%;
-      max-height: 90%;
       padding: 2em;
+      
+      /* We would like to be able to "scroll" down a image */
+      transition: top .5s ease-in-out;
+      top: 0;
     }
     
     ul {
@@ -73,7 +90,6 @@ export default {
     }
 
     ul.half {
-      max-width: 40%;
       display: inline;
     }
 

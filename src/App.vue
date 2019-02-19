@@ -16,8 +16,10 @@
           <li>Hva er Vue.js?</li>
           <li>Devtools</li>
           <li>Komponenter</li>
-          <li>Lifecycle</li>
           <li>Databinding</li>
+          <li>Event handling</li>
+          <li>Lifecycle</li>
+          <li>Reactivity</li>
           <li>Større apps med Vue.js</li>
         </ul>
       </app-slide>
@@ -54,7 +56,7 @@
           <li>Finnes kjempebra extensions til <a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd">Chrome</a> og <a href="https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/">Firefox</a></li>
           <li>Rask prototyping og skaffolding med @vue/cli</li>
         </ul>
-        <code-block 
+        <code-block
           :code="
 `npm install -g @vue/cli
 vue create vue-prosjekt`"
@@ -64,26 +66,160 @@ vue create vue-prosjekt`"
 
       <app-slide>
         <h1>Komponenter</h1>
-        <code-block 
-          :code="examples.basicComponent"
+        <code-block
+          :code="examples.BasicComponentExample"
           lang="text/x-vue"
         />
-      </app-slide>
-
-      <app-slide>
-        <h1>Lifecycle</h1>
+        <p>Component.vue</p>
       </app-slide>
 
       <app-slide>
         <h1>Databinding</h1>
+        <div class="half">
+          <code-block
+            :code="examples.BindingComponentExample"
+            lang="text/x-vue"
+          />
+          <p>BindingComponent.vue</p>
+        </div>
+        <binding-component class="half"/>
       </app-slide>
 
       <app-slide>
-        <h1>Prototyping med Vue CLI</h1>
+        <h1>Databinding for attributter</h1>
+        <div class="half">
+          <code-block
+            :code="examples.AttrBindingComponentExample"
+            lang="text/x-vue"
+          />
+          <p>AttrBindingComponent.vue</p>
+        </div>
+        <attr-binding-component class="half"/>
       </app-slide>
 
       <app-slide>
-        <h1>Økosystem ellers</h1>
+        <h1>Databinding med evaluering</h1>
+        <div class="half">
+          <code-block
+            :code="examples.InputComponentExample"
+            lang="text/x-vue"
+          />
+          <p>InputComponent.vue</p>
+        </div>
+        <input-component class="half"/>
+      </app-slide>
+
+      <app-slide>
+        <h1>Event handling</h1>
+        <div class="half">
+          <code-block
+            :code="examples.EventComponentExample"
+            lang="text/x-vue"
+          />
+          <p>EventComponent.vue</p>
+        </div>
+        <event-component class="half"/>
+      </app-slide>
+
+      <app-slide>
+        <h1>Vue objektet</h1>
+        <code-block
+          :code="
+`export default {
+  name: 'ComponentName',
+  props: {}, // properties
+  data() {}, // reactive data
+  computed: {}, // computed data
+  components: {}, // other components used
+  watch: {}, // observe reactive data
+  methods: {}, // methods
+  
+  // lifecycle handlers
+  beforeCreate() {},
+  created() {},
+  beforeMount() {},
+  mounted() {},
+  beforeUpdate() {},
+  updated() {},
+  activated() {},
+  deactivated() {},
+  beforeDestroy() {},
+  destroyed() {},
+  errorCaptured() {},
+};`"
+          lang="text/javascript"
+        />
+      </app-slide>
+
+      <app-slide>
+        <h1>La oss kode!</h1>
+        <h2 class="subtitle">Dette bør vi få til:</h2>
+        <ul>
+          <li>Få kjørt Vue CLI prosjektet (yarn serve)</li>
+          <li>Lag din egen komponent!
+            <ul>
+              <li>Bør ha et input felt</li>
+              <li>Og noe for å vise verdien fra feltet</li>
+            </ul>
+          </li>
+          <li>Legg til komponenten i App.vue</li>
+        </ul>
+      </app-slide>
+
+      <app-slide>
+        <h1>Conditional Rendering</h1>
+        <div class="half">
+          <code-block
+            :code="examples.ConditionalComponentExample"
+            lang="text/x-vue"
+          />
+          <p>ConditionalComponent.vue</p>
+        </div>
+        <conditional-component class="half"/>
+      </app-slide>
+
+      <app-slide>
+        <h1>List Rendering</h1>
+        <div class="half">
+          <code-block
+            :code="examples.ListComponentExample"
+            lang="text/x-vue"
+          />
+          <p>ListComponent.vue</p>
+        </div>
+        <list-component class="half"/>
+      </app-slide>
+
+      <app-slide>
+        <h1>Computed properties</h1>
+      </app-slide>
+
+      <app-slide>
+        <!-- <h1>Lifecycle</h1> -->
+        <a href="https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram" style="display: contents;" target="_blank">
+          <vertical-image src="/static/lifecycle.png"/>
+        </a>
+      </app-slide>
+
+      <app-slide>
+        <h1>Reactivity</h1>
+        <h2 class="subtitle">Watchers</h2>
+      </app-slide>
+
+      <app-slide>
+        <h1>Reactivity</h1>
+        <h2 class="subtitle">Gotchas</h2>
+      </app-slide>
+
+      <app-slide>
+        <h1>Routing og state</h1>
+        <h2 class="subtitle">For større applikasjoner</h2>
+        <code-block
+          :code="
+`vue add router
+vue add vuex`"
+          lang="text/x-sh"
+        />
       </app-slide>
 
       <app-slide>
@@ -101,8 +237,21 @@ import AppPresenter from './presenter';
 import AppProgress from './components/AppProgress';
 import AppSlide from './components/AppSlide';
 import CodeBlock from './components/CodeBlock';
+import VerticalImage from './components/VerticalImage';
 
 import BasicComponentExample from '!!raw-loader!./examples/BasicComponent.vue';
+import BindingComponent from './examples/BindingComponent';
+import BindingComponentExample from '!!raw-loader!./examples/BindingComponent.vue';
+import AttrBindingComponent from './examples/AttrBindingComponent';
+import AttrBindingComponentExample from '!!raw-loader!./examples/AttrBindingComponent.vue';
+import InputComponent from './examples/InputComponent';
+import InputComponentExample from '!!raw-loader!./examples/InputComponent.vue';
+import EventComponent from './examples/EventComponent';
+import EventComponentExample from '!!raw-loader!./examples/EventComponent.vue';
+import ConditionalComponent from './examples/ConditionalComponent';
+import ConditionalComponentExample from '!!raw-loader!./examples/ConditionalComponent.vue';
+import ListComponent from './examples/ListComponent';
+import ListComponentExample from '!!raw-loader!./examples/ListComponent.vue';
 
 Vue.component('app-presenter', AppPresenter);
 
@@ -112,12 +261,25 @@ export default {
     AppSlide,
     AppProgress,
     CodeBlock,
+    VerticalImage,
+    BindingComponent,
+    InputComponent,
+    AttrBindingComponent,
+    EventComponent,
+    ConditionalComponent,
+    ListComponent,
   },
   data() {
     return {
       progress: 0,
       examples: {
-        basicComponent: BasicComponentExample
+        BasicComponentExample,
+        BindingComponentExample,
+        InputComponentExample,
+        AttrBindingComponentExample,
+        EventComponentExample,
+        ConditionalComponentExample,
+        ListComponentExample,
       }
     };
   },

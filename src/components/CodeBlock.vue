@@ -42,9 +42,11 @@ export default {
     .CodeMirror {
       height: auto;
       text-align: left;
-      
-      &-sizer {
-        // padding: 1em;
+
+      pre {
+        font-family: 'Fira Code';
+        font-variant-ligatures: contextual;
+        font-size: .9em;
       }
     }
   }
