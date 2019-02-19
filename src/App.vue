@@ -6,8 +6,8 @@
         <img src="./assets/logo.png"/>
         <h1>Vue.js</h1>
         <h4>Introduksjonskurs</h4>
-        <p>nærd.no/vue</p>
-        <p>github.com/tobbentm/vue_kurs</p>
+        <a href="http://nærd.no/vue" style="width: 100%;">nærd.no/vue</a>
+        <a href="https://github.com/tobbentm/vue_kurs">github.com/tobbentm/vue_kurs</a>
       </app-slide>
 
       <app-slide>
@@ -18,8 +18,7 @@
           <li>Komponenter</li>
           <li>Lifecycle</li>
           <li>Databinding</li>
-          <li>Prototyping med Vue CLI</li>
-          <li>Økosystem ellers</li>
+          <li>Større apps med Vue.js</li>
         </ul>
       </app-slide>
 
@@ -51,11 +50,24 @@
       
       <app-slide>
         <h1>Devtools</h1>
+        <ul>
+          <li>Finnes kjempebra extensions til <a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd">Chrome</a> og <a href="https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/">Firefox</a></li>
+          <li>Rask prototyping og skaffolding med @vue/cli</li>
+        </ul>
+        <code-block 
+          :code="
+`npm install -g @vue/cli
+vue create vue-prosjekt`"
+          lang="text/x-sh"
+        />
       </app-slide>
 
       <app-slide>
         <h1>Komponenter</h1>
-        <!-- <code slot="code" v-html="" /> -->
+        <code-block 
+          :code="examples.basicComponent"
+          lang="text/x-vue"
+        />
       </app-slide>
 
       <app-slide>
@@ -87,7 +99,10 @@
 import Vue from 'vue';
 import AppPresenter from './presenter';
 import AppProgress from './components/AppProgress';
-import AppSlide from './components/AppSlide'
+import AppSlide from './components/AppSlide';
+import CodeBlock from './components/CodeBlock';
+
+import BasicComponentExample from '!!raw-loader!./examples/BasicComponent.vue';
 
 Vue.component('app-presenter', AppPresenter);
 
@@ -96,10 +111,14 @@ export default {
   components: {
     AppSlide,
     AppProgress,
+    CodeBlock,
   },
   data() {
     return {
       progress: 0,
+      examples: {
+        basicComponent: BasicComponentExample
+      }
     };
   },
 };

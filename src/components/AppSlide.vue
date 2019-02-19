@@ -4,19 +4,13 @@
 
     <div class="slide__content">
       <slot></slot>
-      <code-block v-if="$slots['code']">
-        <slot name="code"></slot>
-      </code-block>
     </div>
   </div>
 </template>
 
 <script>
-import CodeBlock from './CodeBlock';
-
 export default {
   components: {
-    CodeBlock,
   },
 };
 </script>
@@ -35,7 +29,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    width: 4%;
+    width: 3.5%;
   }
 
   &__content {
@@ -44,9 +38,22 @@ export default {
     align-items: center;
     justify-content: center;
 
-    h1 {
+    h1, h2, h3, h4, p {
       display: block;
       width: 100%;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      text-decoration: underline;
+      color: inherit;
+
+      &:visited {
+        color: inherit;
+      }
     }
 
     img {
@@ -62,6 +69,12 @@ export default {
     
     ul {
       text-align: left;
+      display: block;
+    }
+
+    ul.half {
+      max-width: 40%;
+      display: inline;
     }
 
     li {
