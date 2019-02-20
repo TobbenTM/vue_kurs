@@ -18,8 +18,12 @@
           <li>Komponenter</li>
           <li>Databinding</li>
           <li>Event handling</li>
+          <li>Kode-pause! ❤</li>
+          <li>Computed properties</li>
+          <li>Watchers</li>
+          <li>Filtre</li>
           <li>Lifecycle</li>
-          <li>Reactivity</li>
+          <li>Gotchas &amp; pitfalls</li>
           <li>Routing og state</li>
         </ul>
       </app-slide>
@@ -71,6 +75,25 @@ vue create vue-prosjekt`"
           lang="text/x-vue"
         />
         <p>Component.vue</p>
+      </app-slide>
+
+      <app-slide>
+        <h1>Komponenter</h1>
+        <h2 class="subtitle">Hvordan registrere for bruk?</h2>
+        <code-block
+          :code="examples.RegistrationExample"
+          lang="text/javascript"
+          class="half"
+        />
+        <div class="half">
+          <h4>Fungerer for:</h4>
+          <ul>
+            <li>Komponenter</li>
+            <li>Filtre</li>
+            <li>Plugins</li>
+            <li>Direktiver</li>
+          </ul>
+        </div>
       </app-slide>
 
       <app-slide>
@@ -209,6 +232,73 @@ vue create vue-prosjekt`"
       </app-slide>
 
       <app-slide>
+        <h1>Watchers</h1>
+        <div class="half">
+          <code-block
+            :code="examples.WatcherComponentExample"
+            lang="text/javascript"
+            :scriptOnly="true"
+          />
+          <p>WatcherComponent.vue</p>
+        </div>
+        <div class="half">
+          <ul>
+            <li>For å reagere på endringer</li>
+            <li>Som regel bedre å bruke computed</li>
+          </ul>
+          <watcher-component/>
+        </div>
+      </app-slide>
+
+      <app-slide>
+        <h1>Filters</h1>
+        <div class="half">
+          <code-block
+            :code="examples.FilterComponentExample"
+            lang="text/x-vue"
+          />
+          <p>FilterComponent.vue</p>
+        </div>
+        <div class="half">
+          <ul>
+            <li>For å enkelt transformere tekst</li>
+            <li>På en gjenbrukbar måte</li>
+          </ul>
+          <filter-component/>
+        </div>
+      </app-slide>
+
+      <app-slide>
+        <h1>Vue objektet</h1>
+        <code-block
+          :code="
+`export default {
+  name: 'ComponentName', // ✔️
+  props: {}, // properties ✔️
+  data() {}, // reactive data ✔️
+  computed: {}, // computed data ✔️
+  components: {}, // other components used ✔️
+  watch: {}, // observe reactive data ✔️
+  methods: {}, // methods ✔️
+  
+  // lifecycle handlers
+  beforeCreate() {},
+  created() {},
+  beforeMount() {},
+  mounted() {},
+  beforeUpdate() {},
+  updated() {},
+  activated() {},
+  deactivated() {},
+  beforeDestroy() {},
+  destroyed() {},
+  errorCaptured() {},
+};`"
+          lang="text/javascript"
+        />
+      </app-slide>
+
+      <app-slide>
         <h1>Lifecycle</h1>
         <h2 class="subtitle">Hvordan reagere på komponenters tilstand?</h2>
       </app-slide>
@@ -232,26 +322,16 @@ vue create vue-prosjekt`"
 
       <app-slide>
         <h1>Reactivity</h1>
+        <h2 class="subtitle">Gotchas</h2>
         <div class="half">
           <code-block
-            :code="examples.WatcherComponentExample.split('\n  methods:')[0]"
-            lang="text/x-vue"
+            :code="examples.ReactivityGotchaComponentExample"
+            lang="text/javascript"
+            :scriptOnly="true"
           />
-          <p>WatcherComponent.vue</p>
+          <p>ReactivityGotchaComponent.vue</p>
         </div>
-        <div class="half">
-          <h2 class="subtitle">Watchers</h2>
-          <ul>
-            <li>For å reagere på endringer</li>
-            <li>Som regel bedre å bruke computed</li>
-          </ul>
-          <watcher-component/>
-        </div>
-      </app-slide>
-
-      <app-slide>
-        <h1>Reactivity</h1>
-        <h2 class="subtitle">Gotchas</h2>
+        <reactivity-gotcha-component class="half"/>
       </app-slide>
 
       <app-slide>
@@ -263,6 +343,43 @@ vue create vue-prosjekt`"
 vue add vuex`"
           lang="text/x-sh"
         />
+      </app-slide>
+
+      <app-slide>
+        <h1>State med Vuex</h1>
+        <a href="https://vuex.vuejs.org/" target="_blank"><img src="./assets/vuex_flow.png" /></a>
+      </app-slide>
+
+      <app-slide>
+        <h1>State med Vuex</h1>
+        <a href="https://vuex.vuejs.org/" target="_blank"><img src="./assets/vuex.png" /></a>
+      </app-slide>
+
+      <app-slide>
+        <h1>State med Vuex</h1>
+        <code-block
+          :code="examples.StoreExample"
+          lang="text/javascript"
+        />
+        <p>store.js</p>
+      </app-slide>
+
+      <app-slide>
+        <h1>State med Vuex</h1>
+        <div class="half">
+          <code-block
+            :code="examples.StoreExample"
+            lang="text/javascript"
+          />
+          <p>store.js</p>
+        </div>
+        <div class="half">
+          <code-block
+            :code="examples.VuexComponentExample"
+            lang="text/x-vue"
+          />
+          <p>VuexComponent.vue</p>
+        </div>
       </app-slide>
 
       <app-slide>
@@ -300,6 +417,13 @@ import ComputedComponentExample from '!!raw-loader!./examples/ComputedComponent.
 import LifecycleComponent from './examples/LifecycleComponent';
 import WatcherComponent from './examples/WatcherComponent';
 import WatcherComponentExample from '!!raw-loader!./examples/WatcherComponent.vue';
+import StoreExample from '!!raw-loader!./examples/store.js';
+import VuexComponentExample from '!!raw-loader!./examples/VuexComponent.vue';
+import ReactivityGotchaComponent from './examples/ReactivityGotchaComponent';
+import ReactivityGotchaComponentExample from '!!raw-loader!./examples/ReactivityGotchaComponent.vue';
+import FilterComponent from './examples/FilterComponent';
+import FilterComponentExample from '!!raw-loader!./examples/FilterComponent.vue';
+import RegistrationExample from '!!raw-loader!./examples/RegistrationExample.js';
 
 Vue.component('app-presenter', AppPresenter);
 
@@ -319,6 +443,8 @@ export default {
     ComputedComponent,
     LifecycleComponent,
     WatcherComponent,
+    ReactivityGotchaComponent,
+    FilterComponent,
   },
   data() {
     return {
@@ -333,6 +459,11 @@ export default {
         ListComponentExample,
         ComputedComponentExample,
         WatcherComponentExample,
+        StoreExample,
+        VuexComponentExample,
+        ReactivityGotchaComponentExample,
+        FilterComponentExample,
+        RegistrationExample,
       }
     };
   },

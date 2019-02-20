@@ -62,6 +62,7 @@ export default {
 
     .half {
       max-width: 40%;
+      margin: .5em;
     }
 
     .component {

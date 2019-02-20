@@ -2,7 +2,7 @@
   <div class="code-block">
     <codemirror
       class="code-block__mirror"
-      :code="code"
+      :code="filteredCode"
       :options="{
         mode: lang,
       }"
@@ -22,6 +22,20 @@ export default {
       required: false,
       default: 'text/x-vue',
     },
+    scriptOnly: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
+  },
+  computed: {
+    filteredCode() {
+      if (this.scriptOnly) {
+        const matches = /<script>((?:.|\n|\r)*)<\/script>/gm.exec(this.code);
+        return matches ? matches[1].trim() : this.code;
+      }
+      return this.code;
+    },
   },
 };
 </script>
@@ -31,6 +45,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
 
   &__mirror {
     padding: 1em;

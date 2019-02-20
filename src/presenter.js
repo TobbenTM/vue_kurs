@@ -19,6 +19,7 @@ export default {
     }
   },
   created() {
+    this.currentIndex = parseInt(localStorage.getItem('index') || '0');
   },
   data() {
     return {
@@ -33,16 +34,29 @@ export default {
   beforeDestroy() {
     document.removeEventListener('keyup', this.handleKeyup);
   },
+  watch: {
+    currentIndex(newIndex) {
+      localStorage.setItem('index', newIndex.toString());
+    },
+  },
   methods: {
     handleKeyup(event) {
       if (event.defaultPrevented) return;
 
       switch (event.key) {
         case 'ArrowRight':
+        case 'PageDown':
           this.moveNext();
           break;
         case 'ArrowLeft':
+        case 'PageUp':
           this.movePrev();
+          break;
+        case 'Home':
+          this.moveTo(0);
+          break;
+        case 'End':
+          this.moveTo(this.maxSlides-1);
           break;
         default:
           return;
@@ -63,6 +77,11 @@ export default {
         this.currentIndex -= 1;
         this.emitProgress();
       }
+    },
+    moveTo(index) {
+      this.transition = index < this.currentIndex ? 'slide-left' : 'slide-right';
+      this.currentIndex = index;
+      this.emitProgress();
     },
     emitProgress() {
       this.$emit('progress', (this.currentIndex + 1) * 100 / this.maxSlides);
