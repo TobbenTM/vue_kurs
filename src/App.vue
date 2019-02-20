@@ -155,7 +155,7 @@ vue create vue-prosjekt`"
         <h1>La oss kode!</h1>
         <h2 class="subtitle">Dette bør vi få til:</h2>
         <ul>
-          <li>Få kjørt Vue CLI prosjektet (yarn serve)</li>
+          <li>Få kjørt Vue CLI prosjektet (npm run serve)</li>
           <li>Lag din egen komponent!
             <ul>
               <li>Bør ha et input felt</li>
@@ -192,13 +192,41 @@ vue create vue-prosjekt`"
 
       <app-slide>
         <h1>Computed properties</h1>
+        <div class="half">
+          <ul>
+            <li>Vil oppdateres om kilder oppdateres</li>
+            <li>Fine til å koble opp mot state</li>
+            <li>Fungerer som vanlige properties</li>
+          </ul>
+          <computed-component/>
+        </div>
+          <code-block
+            class="half"
+            :code="examples.ComputedComponentExample"
+            lang="text/x-vue"
+          />
+      </app-slide>
+
+      <app-slide>
+        <h1>Lifecycle</h1>
+        <h2 class="subtitle">Hvordan reagere på komponenters tilstand?</h2>
       </app-slide>
 
       <app-slide>
         <!-- <h1>Lifecycle</h1> -->
         <a href="https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram" style="display: contents;" target="_blank">
-          <vertical-image src="/static/lifecycle.png"/>
+          <vertical-image src="static/lifecycle.png"/>
         </a>
+      </app-slide>
+
+      <app-slide>
+        <h1>Lifecycle</h1>
+        <h2 class="subtitle">Praktisk eksempel</h2>
+        <ul class="half">
+          <li>Kan brukes for å begynne lasting når komponent blir vist</li>
+          <li>Kan brukes for å rydde opp i ubrukte ressurser</li>
+        </ul>
+        <lifecycle-component/>
       </app-slide>
 
       <app-slide>
@@ -252,6 +280,9 @@ import ConditionalComponent from './examples/ConditionalComponent';
 import ConditionalComponentExample from '!!raw-loader!./examples/ConditionalComponent.vue';
 import ListComponent from './examples/ListComponent';
 import ListComponentExample from '!!raw-loader!./examples/ListComponent.vue';
+import ComputedComponent from './examples/ComputedComponent';
+import ComputedComponentExample from '!!raw-loader!./examples/ComputedComponent.vue';
+import LifecycleComponent from './examples/LifecycleComponent';
 
 Vue.component('app-presenter', AppPresenter);
 
@@ -268,6 +299,8 @@ export default {
     EventComponent,
     ConditionalComponent,
     ListComponent,
+    ComputedComponent,
+    LifecycleComponent,
   },
   data() {
     return {
@@ -280,6 +313,7 @@ export default {
         EventComponentExample,
         ConditionalComponentExample,
         ListComponentExample,
+        ComputedComponentExample,
       }
     };
   },
