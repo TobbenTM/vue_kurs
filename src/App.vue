@@ -20,7 +20,7 @@
           <li>Event handling</li>
           <li>Lifecycle</li>
           <li>Reactivity</li>
-          <li>Større apps med Vue.js</li>
+          <li>Routing og state</li>
         </ul>
       </app-slide>
 
@@ -195,6 +195,7 @@ vue create vue-prosjekt`"
         <div class="half">
           <ul>
             <li>Vil oppdateres om kilder oppdateres</li>
+            <li>Cachet basert på dependencies</li>
             <li>Fine til å koble opp mot state</li>
             <li>Fungerer som vanlige properties</li>
           </ul>
@@ -231,7 +232,21 @@ vue create vue-prosjekt`"
 
       <app-slide>
         <h1>Reactivity</h1>
-        <h2 class="subtitle">Watchers</h2>
+        <div class="half">
+          <code-block
+            :code="examples.WatcherComponentExample.split('\n  methods:')[0]"
+            lang="text/x-vue"
+          />
+          <p>WatcherComponent.vue</p>
+        </div>
+        <div class="half">
+          <h2 class="subtitle">Watchers</h2>
+          <ul>
+            <li>For å reagere på endringer</li>
+            <li>Som regel bedre å bruke computed</li>
+          </ul>
+          <watcher-component/>
+        </div>
       </app-slide>
 
       <app-slide>
@@ -283,6 +298,8 @@ import ListComponentExample from '!!raw-loader!./examples/ListComponent.vue';
 import ComputedComponent from './examples/ComputedComponent';
 import ComputedComponentExample from '!!raw-loader!./examples/ComputedComponent.vue';
 import LifecycleComponent from './examples/LifecycleComponent';
+import WatcherComponent from './examples/WatcherComponent';
+import WatcherComponentExample from '!!raw-loader!./examples/WatcherComponent.vue';
 
 Vue.component('app-presenter', AppPresenter);
 
@@ -301,6 +318,7 @@ export default {
     ListComponent,
     ComputedComponent,
     LifecycleComponent,
+    WatcherComponent,
   },
   data() {
     return {
@@ -314,6 +332,7 @@ export default {
         ConditionalComponentExample,
         ListComponentExample,
         ComputedComponentExample,
+        WatcherComponentExample,
       }
     };
   },

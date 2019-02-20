@@ -1,61 +1,51 @@
 <template>
   <div class="component">
-    <h1>Jernbanetorget T</h1>
-    <p v-if="loading">Laster data...</p>
-    <p v-else-if="error">{{ error }}</p>
-    <p v-else-if="!data">Ingen data å vise!</p>
-    <p v-else>{{ data[0] | formatDeparture }}</p>
+    <input
+      v-model="searchQuery"
+      placeholder="Hva vil du finne?"
+    /><br/>
+    <p v-if="searching">Søker...</p>
+    <p v-else-if="result">Fant {{ result }} resultater!</p>
+    <p v-else>Fant ingen ting!</p>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
+import debounce from '../utils/debounce.js';
 
 export default {
   data() {
     return {
-      loading: false,
-      error: null,
-      data: null,
+      searchQuery: '',
+      searching: false,
+      result: null,
     };
   },
-  async mounted() {
-    await this.loadData();
+  created() {
+    this.debouncedSearch = debounce(this.search, 1000);
   },
-  methods: {
-    async loadData() {
-      this.loading = true;
-      this.error = null;
-
-      try {
-        var result = await axios.get('http://reisapi.ruter.no/StopVisit/GetDepartures/3010011');
-        this.data = result.data;
-        await sleep(5000);
-        this.loading = false;
-      } catch (err) {
-        this.error = err;
-        this.loading = false;
+  watch: {
+    // eslint-disable-next-line
+    searchQuery(newQuery, oldQuery) {
+      if (newQuery) {
+        this.debouncedSearch();
+        this.searching = true;
       }
     },
   },
-  filters: {
-    formatDeparture(departure) {
-      const display = departure.MonitoredVehicleJourney.MonitoredCall;
-      const expectedDepartureTime = new Date(display.ExpectedDepartureTime);
-      const now = new Date();
-      const delta = ((now - expectedDepartureTime) / 1000) + 60;
-      let humanizedDepartureTime = '';
-      if (delta < 60) {
-        humanizedDepartureTime = `${Math.floor(delta)} sekunder`;
-      } else {
-        humanizedDepartureTime = `${Math.floor(delta/60)} minutter`;
-      }
-      return `Neste avgang: ${display.DestinationDisplay} om ${humanizedDepartureTime}`;
+  methods: {
+    search() {
+      // TODO: Add HTTP request to get data
+      this.result = Math.floor(Math.random()*100);
+      this.searching = false;
     },
   },
 };
 </script>
+
+<style scoped>
+.component input {
+  line-height: 2em;
+  padding: .5em;
+}
+</style>
