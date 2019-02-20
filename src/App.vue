@@ -21,11 +21,20 @@
           <li>Kode-pause! ❤</li>
           <li>Computed properties</li>
           <li>Watchers</li>
+          <li>Custom inputs</li>
           <li>Filtre</li>
           <li>Lifecycle</li>
           <li>Gotchas &amp; pitfalls</li>
           <li>Routing og state</li>
         </ul>
+      </app-slide>
+
+      <app-slide>
+        <h1>Hvem er jeg?</h1>
+        <img src="http://tobbentm.com/ul/pl05.jpg" style="border-radius: 50%; overflow: hidden; max-width: 256px;" />
+        <h4>Tobias Lønnerød Madsen</h4>
+        <p>Fullstack utvikler .Net</p><br/>
+        <a href="https://github.com/TobbenTM">github.com/TobbenTM</a>
       </app-slide>
 
       <app-slide>
@@ -251,6 +260,31 @@ vue create vue-prosjekt`"
       </app-slide>
 
       <app-slide>
+        <h1>Custom inputs</h1>
+        <div class="half">
+          <ul>
+            <li>Noen ganger trenger vi custom inputs</li>
+            <li>Vi kan utnytte 2-veis databinding med v-model</li>
+            <li>(bør ikke overbrukes)</li>
+          </ul>
+          <v-model-usage-component/>
+          <code-block
+            :code="examples.VModelUsageExample"
+            lang="text/x-vue"
+            :scriptOnly="true"
+          />
+        </div>
+        <div class="half">
+          <code-block
+            :code="examples.VModelComponentExample"
+            lang="text/javascript"
+            :scriptOnly="true"
+          />
+          <p>VModelComponent.vue</p>
+        </div>
+      </app-slide>
+
+      <app-slide>
         <h1>Filters</h1>
         <div class="half">
           <code-block
@@ -424,6 +458,8 @@ import ReactivityGotchaComponentExample from '!!raw-loader!./examples/Reactivity
 import FilterComponent from './examples/FilterComponent';
 import FilterComponentExample from '!!raw-loader!./examples/FilterComponent.vue';
 import RegistrationExample from '!!raw-loader!./examples/RegistrationExample.js';
+import VModelUsageComponent from './examples/VModelUsageComponent';
+import VModelComponentExample from '!!raw-loader!./examples/VModelComponent.vue';
 
 Vue.component('app-presenter', AppPresenter);
 
@@ -445,6 +481,7 @@ export default {
     WatcherComponent,
     ReactivityGotchaComponent,
     FilterComponent,
+    VModelUsageComponent,
   },
   data() {
     return {
@@ -464,6 +501,8 @@ export default {
         ReactivityGotchaComponentExample,
         FilterComponentExample,
         RegistrationExample,
+        VModelComponentExample,
+        VModelUsageExample: '<address-input v-model="address"/>',
       }
     };
   },
