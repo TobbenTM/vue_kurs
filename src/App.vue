@@ -23,6 +23,7 @@
           <li>Watchers</li>
           <li>Custom inputs</li>
           <li>Filtre</li>
+          <li>Directives</li>
           <li>Lifecycle</li>
           <li>Gotchas &amp; pitfalls</li>
           <li>Routing og state</li>
@@ -204,6 +205,7 @@ vue create vue-prosjekt`"
           <code-block
             :code="examples.ConditionalComponentExample"
             lang="text/x-vue"
+            :template-only="true"
           />
           <p>ConditionalComponent.vue</p>
         </div>
@@ -246,7 +248,7 @@ vue create vue-prosjekt`"
           <code-block
             :code="examples.WatcherComponentExample"
             lang="text/javascript"
-            :scriptOnly="true"
+            :script-only="true"
           />
           <p>WatcherComponent.vue</p>
         </div>
@@ -271,14 +273,14 @@ vue create vue-prosjekt`"
           <code-block
             :code="examples.VModelUsageExample"
             lang="text/x-vue"
-            :scriptOnly="true"
+            :script-only="true"
           />
         </div>
         <div class="half">
           <code-block
             :code="examples.VModelComponentExample"
             lang="text/javascript"
-            :scriptOnly="true"
+            :script-only="true"
           />
           <p>VModelComponent.vue</p>
         </div>
@@ -299,6 +301,33 @@ vue create vue-prosjekt`"
             <li>På en gjenbrukbar måte</li>
           </ul>
           <filter-component/>
+        </div>
+      </app-slide>
+
+      <app-slide>
+        <h1>Directives</h1>
+        <div class="half">
+          <ul>
+            <li>For å gjøre endringer på elementer enkelt</li>
+            <li>På en gjenbrukbar måte</li>
+            <li>Kan registrere hooks for:
+              <ul>
+                <li>bind</li>
+                <li>inserted</li>
+                <li>update</li>
+                <li>componentUpdated</li>
+                <li>unbind</li>
+              </ul>
+            </li>
+          </ul>
+          <directive-component/>
+        </div>
+        <div class="half">
+          <code-block
+            :code="examples.DirectiveComponentExample"
+            lang="text/x-vue"
+          />
+          <p>DirectiveComponent.vue</p>
         </div>
       </app-slide>
 
@@ -361,7 +390,7 @@ vue create vue-prosjekt`"
           <code-block
             :code="examples.ReactivityGotchaComponentExample"
             lang="text/javascript"
-            :scriptOnly="true"
+            :script-only="true"
           />
           <p>ReactivityGotchaComponent.vue</p>
         </div>
@@ -460,6 +489,8 @@ import FilterComponentExample from '!!raw-loader!./examples/FilterComponent.vue'
 import RegistrationExample from '!!raw-loader!./examples/RegistrationExample.js';
 import VModelUsageComponent from './examples/VModelUsageComponent';
 import VModelComponentExample from '!!raw-loader!./examples/VModelComponent.vue';
+import DirectiveComponent from './examples/DirectiveComponent';
+import DirectiveComponentExample from '!!raw-loader!./examples/DirectiveComponent.vue';
 
 Vue.component('app-presenter', AppPresenter);
 
@@ -482,6 +513,7 @@ export default {
     ReactivityGotchaComponent,
     FilterComponent,
     VModelUsageComponent,
+    DirectiveComponent,
   },
   data() {
     return {
@@ -503,6 +535,7 @@ export default {
         RegistrationExample,
         VModelComponentExample,
         VModelUsageExample: '<address-input v-model="address"/>',
+        DirectiveComponentExample,
       }
     };
   },

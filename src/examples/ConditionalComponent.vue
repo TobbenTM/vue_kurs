@@ -5,6 +5,9 @@
     <p v-else-if="showError">Oida, noe gikk galt!</p>
     <p v-else>Hva er det som skjedde?</p>
 
+    <!-- Et alternativ til v-if er v-show -->
+    <p v-show="false">Denne eksisterer, men er skjult</p>
+
     <button v-on:click="showMessage = false">Fjern melding</button> | 
     <button v-on:click="showError = false">Fjern feil</button>
   </div>

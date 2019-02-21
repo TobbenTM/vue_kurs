@@ -26,12 +26,21 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
+    templateOnly: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   computed: {
     filteredCode() {
       if (this.scriptOnly) {
         const matches = /<script>((?:.|\n|\r)*)<\/script>/gm.exec(this.code);
+        return matches ? matches[1].trim() : this.code;
+      }
+      if (this.templateOnly) {
+        const matches = /<template>((?:.|\n|\r)*)<\/template>/gm.exec(this.code);
         return matches ? matches[1].trim() : this.code;
       }
       return this.code;
