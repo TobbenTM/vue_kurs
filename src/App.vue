@@ -63,7 +63,7 @@
         </div>
         <img src="./assets/fe_stats.png" class="half"/>
       </app-slide>
-      
+
       <app-slide>
         <h1>Devtools</h1>
         <ul>
@@ -166,7 +166,7 @@ vue create vue-prosjekt`"
   components: {}, // other components used
   watch: {}, // observe reactive data
   methods: {}, // methods
-  
+
   // lifecycle handlers
   beforeCreate() {},
   created() {},
@@ -198,6 +198,14 @@ vue create vue-prosjekt`"
           <li>Legg til komponenten i App.vue</li>
         </ul>
       </app-slide>
+
+		<app-slide>
+			<h1> Vue plugins til VSCode! </h1>
+			<ul>
+				<li> <a href="https://github.com/vuejs/vetur"> https://github.com/vuejs/vetur </a> </li>
+				<li> <a href="https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-snippets"> https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-snippets  </a> </li>
+			</ul>
+		</app-slide>
 
       <app-slide>
         <h1>Conditional Rendering</h1>
